@@ -1,0 +1,5 @@
+include:
+  - "_redirects"
+
+plugins:
+  - jekyll-redirect-from
