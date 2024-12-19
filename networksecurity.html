@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Security - Paxal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #FF6B4A;
+            --primary-gradient: linear-gradient(45deg, #FF6B4A, #FFA07A);
+            --secondary: #2D2D2D;
+            --text: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+
+        body {
+            background-color: #1A1A1A;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Background Animation */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.3;
+            background: linear-gradient(to bottom right, #1a1a1a, #2d2d2d);
+        }
+
+        .background span {
+            position: absolute;
+            display: block;
+            pointer-events: none;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s linear infinite;
+            border-radius: 50%;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .logo-text span {
+            display: inline-block;
+            opacity: 0;
+            animation: glow 0.5s ease forwards;
+        }
+
+        .logo-text span:nth-child(1) { animation-delay: 0.1s; }
+        .logo-text span:nth-child(2) { animation-delay: 0.2s; }
+        .logo-text span:nth-child(3) { animation-delay: 0.3s; }
+        .logo-text span:nth-child(4) { animation-delay: 0.4s; }
+        .logo-text span:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes glow {
+            0% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(255, 107, 74, 0.5);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Service Hero Section */
+        .service-hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 6rem 2rem 2rem;
+            position: relative;
+        }
+
+        .service-hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .service-hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Service Content */
+        .service-content {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: rgba(45, 45, 45, 0.5);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 107, 74, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(255, 107, 74, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Technology Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .tech-badge {
+            background: rgba(255, 107, 74, 0.1);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: rgba(45, 45, 45, 0.3);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .button {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .button-primary {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        .button-primary:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .button-secondary {
+            border: 2px solid var(--primary);
+            color: var(--text);
+        }
+
+        .button-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .service-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background" id="background"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span>P</span>
+                    <span>A</span>
+                    <span>X</span>
+                    <span>A</span>
+                    <span>L</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#expertise">Expertise</a>
+                <a href="contact.html">Contact</a>
+                <a href="popia.html">POPIA Notice</a>
+				<a href="projects-page.html"> Our Projects </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Service Hero Section -->
+    <section class="service-hero">
+        <div class="hero-content">
+            <h1>Network Security</h1>
+            <p>Enterprise-grade security solutions to protect your digital assets</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="service-content">
+        <h2 class="section-title">What We Offer</h2>
+        <p>Comprehensive network security solutions tailored to your enterprise needs. Our team of certified security experts ensures your infrastructure remains protected against evolving threats.</p>
+
+        <!-- Feature Grid -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-shield-alt service-icon"></i>
+                <h3>Firewall Management</h3>
+                <p>Advanced firewall configuration and maintenance with 24/7 monitoring and threat detection.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-lock service-icon"></i>
+                <h3>Access Control</h3>
+                <p>Robust access management systems with multi-factor authentication and detailed audit logs.</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-shield-virus service-icon"></i>
+                <h3>Threat Prevention</h3>
+                <p>Proactive threat detection and prevention using next-generation security tools.</p>
+            </div>
+        </div>
+
+        <!-- Technologies Section -->
+        <h2 class="section-title">Technologies We Use</h2>
+        <div class="tech-stack">
+            <div class="nav-links">
+				<a href="https://www.fortinet.com/" <span class="tech-badge">Fortinet</span> </a>
+			</div>
+			<div class="nav-links">
+				<a href="https://help.mikrotik.com/docs/spaces/ROS/pages/250708066/Firewall"<span class="tech-badge">MikroTik</span> </a>
+			</div>
+			<div class="nav-links">
+				<a href="https://www.paloaltonetworks.com/"<span class="tech-badge">Palo Alto</span> </a>
+			</div>
+			<div class="nav-links">
+				<a href="articles/linux-firewall-page.html"<span class="tech-badge">Linux-based Firewalls</span> </a>
+			</div>
+			<div class="nav-links">
+				<a href="https://www.sophos.com/en-us"<span class="tech-badge">Sophos</span> </a>
+			</div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Ready to Secure Your Network?</h2>
+            <p>Let's discuss how we can help protect your enterprise infrastructure.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="button button-primary">Get Started</a>
+                <a href="#" class="button button-secondary">Download Brochure</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/paxalit/" target="_blank" rel="noopener noreferrer" class="cloudflare-linkedin">
+					<i class="fab fa-linkedin"></i> LinkedIn
+				</a>
+
+                <a href="terms.html" class="terms-link">
+					<i class="fas fa-file-contract"></i> Terms
+				</a>
+				<a href="popia.html" class="privacy-link">
+					<i class="fas fa-shield-alt"></i> Privacy
+				</a>
+            </div>
+            <p>&copy; 2024 Paxal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const background = document.getElementById('background');
+            const particleCount = 100;
+            
+            // Create initial particles
+            for (let i = 0; i < particleCount; i++) {
+                createParticle();
+            }
+
+            // Create new particles periodically
+            setInterval(createParticle, 2000);
+
+            // Add mouse interaction
+            document.addEventListener('mousemove', function(e) {
+                if (Math.random() > 0.85) {
+                    const mouseParticle = document.createElement('span');
+                    mouseParticle.style.left = e.clientX + 'px';
+                    mouseParticle.style.top = e.clientY + 'px';
+                    mouseParticle.style.animation = 'float ' + (Math.random() * 5 + 10) + 's linear infinite';
+                    mouseParticle.style.opacity = '0.2';
+                    background.appendChild(mouseParticle);
+                    
+                    // Remove particle after animation
+                    setTimeout(() => mouseParticle.remove(), 15000);
+                }
+            });
+
+            function createParticle() {
+                const particle = document.createElement('span');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = '100%';
+                particle.style.animation = 'float ' + (Math.random() * 10 + 5) + 's linear infinite';
+                background.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => particle.remove(), 15000

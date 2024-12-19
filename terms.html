@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms and Conditions - Paxal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #FF6B4A;
+            --primary-gradient: linear-gradient(45deg, #FF6B4A, #FFA07A);
+            --secondary: #2D2D2D;
+            --text: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+
+        body {
+            background-color: #1A1A1A;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .logo-text span {
+            display: inline-block;
+            opacity: 0;
+            animation: glow 0.5s ease forwards;
+        }
+
+        .logo-text span:nth-child(1) { animation-delay: 0.1s; }
+        .logo-text span:nth-child(2) { animation-delay: 0.2s; }
+        .logo-text span:nth-child(3) { animation-delay: 0.3s; }
+        .logo-text span:nth-child(4) { animation-delay: 0.4s; }
+        .logo-text span:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes glow {
+            0% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(255, 107, 74, 0.5);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .main-content {
+            max-width: 1000px;
+            margin: 100px auto 60px;
+            padding: 2rem;
+        }
+
+        .terms-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .terms-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .terms-section {
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .terms-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            color: var(--text-muted);
+        }
+
+        ul {
+            list-style: none;
+            margin-left: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        ul li {
+            margin-bottom: 0.5rem;
+            color: var(--text-muted);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+        }
+
+        footer {
+            background: var(--secondary);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span>P</span>
+                    <span>A</span>
+                    <span>X</span>
+                    <span>A</span>
+                    <span>L</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#expertise">Expertise</a>
+                <a href="contact.html">Contact</a>
+                <a href="popia.html">POPIA Notice</a>
+				<a href="projects-page.html"> Our Projects </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="main-content">
+        <div class="terms-header">
+            <i class="fas fa-file-contract terms-icon"></i>
+            <h1>Terms and Conditions</h1>
+        </div>
+
+        <div class="terms-section">
+            <h2>1. Agreement to Terms</h2>
+            <p>By accessing and using Paxal's services, you agree to be bound by these Terms and Conditions. If you disagree with any part of these terms, you may not access or use our services.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>2. Service Description</h2>
+            <p>Paxal provides enterprise IT solutions, including but not limited to:</p>
+            <ul>
+                <li>Network security implementations</li>
+                <li>Network infrastructure design and deployment</li>
+                <li>System administration services</li>
+                <li>Website hosting services</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2>3. Service Level Agreements</h2>
+            <p>All service level agreements (SLAs) are subject to individual contract terms. Standard response times and service availability will be detailed in your specific service agreement.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>4. Payment Terms</h2>
+            <p>Unless otherwise agreed in writing:</p>
+            <ul>
+                <li>Invoices are payable within 30 days of issue</li>
+                <li>All prices are quoted exclusive of VAT</li>
+                <li>Regular service fees are billed monthly in advance</li>
+                <li>Project work may require an initial deposit</li>
+            </ul>
+        </div>
+
+        <div class="terms-section">
+            <h2>5. Intellectual Property</h2>
+            <p>All intellectual property rights in relation to our services, including but not limited to software, documentation, and methodologies, remain the property of Paxal or our licensors.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>6. Confidentiality</h2>
+            <p>We maintain strict confidentiality regarding all client information and data. Detailed confidentiality terms are outlined in individual service agreements.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>7. Limitation of Liability</h2>
+            <p>Paxal's liability shall be limited to the extent permitted by applicable law and shall not exceed the total amount paid for the services in the 12 months preceding any claim.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>8. Termination</h2>
+            <p>Either party may terminate services with written notice as specified in the service agreement. Any outstanding fees will become immediately payable upon termination.</p>
+        </div>
+
+        <div class="terms-section">
+            <h2>9. Governing Law</h2>
+            <p>These terms shall be governed by and construed in accordance with the laws of South Africa, and any disputes shall be subject to the exclusive jurisdiction of the South African courts.</p>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 Paxal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.terms-section').forEach(el => {
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

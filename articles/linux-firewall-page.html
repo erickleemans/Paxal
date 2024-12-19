@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Linux-based Firewalls - Paxal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #FF6B4A;
+            --primary-gradient: linear-gradient(45deg, #FF6B4A, #FFA07A);
+            --secondary: #2D2D2D;
+            --text: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+
+        body {
+            background-color: #1A1A1A;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+
+        .background span {
+            position: absolute;
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-gradient);
+            animation: move 3s linear infinite;
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
+        @keyframes move {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 1rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .logo-text span {
+            display: inline-block;
+            opacity: 0;
+            animation: glow 0.5s ease forwards;
+        }
+
+        .logo-text span:nth-child(1) { animation-delay: 0.1s; }
+        .logo-text span:nth-child(2) { animation-delay: 0.2s; }
+        .logo-text span:nth-child(3) { animation-delay: 0.3s; }
+        .logo-text span:nth-child(4) { animation-delay: 0.4s; }
+        .logo-text span:nth-child(5) { animation-delay: 0.5s; }
+
+        @keyframes glow {
+            0% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(255, 107, 74, 0.5);
+            }
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 100px auto 60px;
+            padding: 2rem;
+        }
+
+        .article-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-top: 4rem;
+        }
+
+        .article-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .article-section {
+            background: rgba(45, 45, 45, 0.5);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 107, 74, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .article-section:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .article-section p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .article-section ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .article-section ul li {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .article-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+        }
+
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-item {
+            background: rgba(45, 45, 45, 0.3);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(255, 107, 74, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            border-color: var(--primary);
+        }
+
+        .faq-question {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--secondary);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .article-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .article-section {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="background" id="background"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span>P</span>
+                    <span>A</span>
+                    <span>X</span>
+                    <span>A</span>
+                    <span>L</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="../index.html#services">Services</a>
+                <a href="../index.html#expertise">Expertise</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../popia.html">POPIA Notice</a>
+				<a href="../projects-page.html"> Our Projects </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="article-header">
+            <h1>Linux-based Firewalls</h1>
+            <p>Enterprise-grade security solutions for your business</p>
+        </div>
+
+        <div class="article-section">
+            <h2>Why Choose Linux-based Firewalls?</h2>
+            <p>At Paxal, we specialize in implementing robust Linux-based firewall solutions that provide enterprise-grade security without the enterprise-grade costs. Our carefully crafted firewall configurations offer unparalleled protection for your business infrastructure while maintaining the flexibility and control you need.</p>
+        </div>
+
+        <div class="article-section">
+            <h2>Key Benefits</h2>
+            <ul>
+                <li>Complete customization control over security policies</li>
+                <li>Real-time threat detection and prevention</li>
+                <li>Detailed logging and monitoring capabilities</li>
+                <li>Cost-effective compared to proprietary solutions</li>
+                <li>Regular security updates and patches</li>
+                <li>Scalable performance for growing businesses</li>
+            </ul>
+        </div>
+
+        <div class="article-section">
+            <h2>Our Implementation Approach</h2>
+            <ul>
+                <li>Detailed initial security assessment</li>
+                <li>Custom rule configuration based on your business needs</li>
+                <li>Integration with existing security systems</li>
+                <li>Comprehensive documentation and training</li>
+                <li>24/7 monitoring and maintenance support</li>
+            </ul>
+        </div>
+
+        <div class="article-section faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <p class="faq-question">What makes Linux-based firewalls different from commercial alternatives?</p>
+                <p>Linux-based firewalls offer greater customization, transparency, and cost-effectiveness. With access to the source code and a vast community of security experts, these solutions can be tailored precisely to your needs while maintaining enterprise-grade security standards.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">How often should firewall rules be updated?</p>
+                <p>We recommend monthly reviews of firewall rules with immediate updates for critical security patches. Our team provides continuous monitoring and implements updates as needed to maintain optimal security.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Can Linux firewalls protect against modern cyber threats?</p>
+                <p>Absolutely. Our Linux firewall implementations include advanced features like deep packet inspection, intrusion detection, and prevention systems that protect against the latest cyber threats, including zero-day exploits and sophisticated attacks.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">What level of support do you provide after implementation?</p>
+                <p>We offer comprehensive support packages including 24/7 monitoring, regular maintenance, emergency response, and quarterly security audits. Our team is always available to address any security concerns or needed modifications.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/paxalit/" target="_blank" rel="noopener noreferrer" class="cloudflare-linkedin">
+					<i class="fab fa-linkedin"></i> LinkedIn
+				</a>
+                <a href="../terms.html" class="terms-link">
+					<i class="fas fa-file-contract"></i> Terms
+				</a>
+				<a href="../popia.html" class="privacy-link">
+					<i class="fas fa-shield-alt"></i> Privacy
+				</a>
+            </div>
+            <p>&copy; 2024 Paxal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Create animated background particles
+        document.addEventListener('DOMContentLoaded', function() {
+            const background = document.getElementById('background');
+            for (let i = 0; i < 50; i++) {
+                const span = document.createElement('span');
+                span.style.left = Math.random() * 100 + '%';
+                span.style.animationDelay = Math.random() * 5 + 's';
+                span.style.animationDuration = Math.random() * 3 + 3 + 's';
+                background.appendChild(span);
+            }
+
+            // Navbar scroll effect
+            window.addEventListener('scroll', () => {
+                const navbar = document.getElementById('navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
