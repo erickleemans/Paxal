@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paxal - Enterprise IT Solutions</title>
+    <title>Linux-based Firewalls - Paxal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* All previous styles remain exactly the same */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
         * {
@@ -157,147 +156,97 @@
             color: var(--primary);
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+        /* Main Content */
+        .main-content {
+            max-width: 1000px;
+            margin: 100px auto 60px;
             padding: 2rem;
-            position: relative;
         }
 
-        .hero-content {
-            max-width: 800px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease forwards;
+        .article-header {
+            text-align: center;
+            margin-bottom: 4rem;
+            padding-top: 4rem;
         }
 
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
+        .article-header h1 {
+            font-size: 3rem;
             margin-bottom: 1.5rem;
-            line-height: 1.2;
             background: var(--primary-gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-muted);
-            margin-bottom: 2rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .button {
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .button-primary {
-            background: var(--primary-gradient);
-            color: white;
-        }
-
-        .button-primary:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        .button-secondary {
-            border: 2px solid var(--primary);
-            color: var(--text);
-        }
-
-        .button-secondary:hover {
-            background: var(--primary);
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            color: var(--primary);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
+        .article-section {
             background: rgba(45, 45, 45, 0.5);
             border-radius: 12px;
             padding: 2rem;
-            transition: all 0.3s ease;
+            margin-bottom: 2rem;
             border: 1px solid rgba(255, 107, 74, 0.1);
+            transition: all 0.3s ease;
         }
 
-        .service-card:hover {
-            transform: translateY(-5px);
+        .article-section:hover {
             border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(255, 107, 74, 0.1);
+            transform: translateY(-5px);
         }
 
-        .service-icon {
-            font-size: 2rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        h2 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .article-section p {
+            color: var(--text-muted);
             margin-bottom: 1rem;
         }
 
-        /* Expertise Section */
-        .expertise {
-            padding: 6rem 2rem;
+        .article-section ul {
+            list-style: none;
+            margin: 1rem 0;
+        }
+
+        .article-section ul li {
+            color: var(--text-muted);
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .article-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 6px;
+            height: 6px;
+            background: var(--primary-gradient);
+            border-radius: 50%;
+        }
+
+        .faq-section {
+            margin-top: 4rem;
+        }
+
+        .faq-item {
             background: rgba(45, 45, 45, 0.3);
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .expertise-card {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(26, 26, 26, 0.5);
-            border-radius: 12px;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
             border: 1px solid rgba(255, 107, 74, 0.1);
             transition: all 0.3s ease;
         }
 
-        .expertise-card:hover {
+        .faq-item:hover {
             border-color: var(--primary);
+        }
+
+        .faq-question {
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         /* Footer */
@@ -335,16 +284,12 @@
                 display: none;
             }
 
-            .hero h1 {
+            .article-header h1 {
                 font-size: 2.5rem;
             }
 
-            .cta-buttons {
-                flex-direction: column;
-            }
-
-            .button {
-                width: 100%;
+            .article-section {
+                padding: 1.5rem;
             }
         }
     </style>
@@ -356,7 +301,7 @@
     <!-- Navigation -->
     <nav id="navbar">
         <div class="nav-container">
-            <a href="index.html" class="logo">
+            <a href="../index.html" class="logo">
                 <div class="logo-icon"></div>
                 <div class="logo-text">
                     <span>P</span>
@@ -367,91 +312,74 @@
                 </div>
             </a>
             <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#expertise">Expertise</a>
-                <a href="contact.html">Contact</a>
-                <a href="popia.html">POPIA Notice</a>
-				<a href="projects-page.html"> Our Projects </a>
+                <a href="../index.html#services">Services</a>
+                <a href="../index.html#expertise">Expertise</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../popia.html">POPIA Notice</a>
+				<a href="../projects-page.html"> Our Projects </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Secure. Reliable.<br>Professional.</h1>
-            <p>Enterprise IT solutions backed by over a decade of industry experience</p>
-            <div class="cta-buttons">
-                <a href="contact.html" class="button button-primary">Get Started</a>
-                <a href="#services" class="button button-secondary">Learn More</a>
-            </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="article-header">
+            <h1>Linux-based Firewalls</h1>
+            <p>Enterprise-grade security solutions for your business</p>
         </div>
-    </section>
 
-    <!-- Services Section -->
-	<section id="services" class="services">
-        <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-				<div class="service-card">
-					<i class="fas fa-shield-alt service-icon"></i>
-						<div class="nav-links">
-							<a href="networksecurity.html" > <h3>Network Security</h3> </a>
-						</div>
-					<p>Enterprise-grade firewall solutions and comprehensive security implementations to protect your business.</p>
-				</div>
-			
-            <div class="service-card">
-                <i class="fas fa-network-wired service-icon"></i>
-					<div class="nav-links">
-						<a href="networkinfrastructure.html" > <h3>Network Infrastructure</h3> </a>
-					</div>
-				<p>Complete network design and implementation for optimal performance and reliability.</p>
-            </div>
-            <div class="service-card">
-                <i class="fas fa-server service-icon"></i>
-                <div class="nav-links">
-						<a href="sysadmin.html" > <h3>System Administration</h3> </a>
-					</div>
-                <p>Expert system administration and maintenance for seamless IT operations.</p>
-            </div>
-			<div class="service-card">
-                <i class="fas fa-server service-icon"></i>
-					<div class="nav-links">
-						<a href="websitehosting.html" > <h3>Website Hosting</h3> </a>
-					</div>
-                <p>Expert system administration and maintenance for seamless IT operations.</p>
-            </div>
+        <div class="article-section">
+            <h2>Why Choose Linux-based Firewalls?</h2>
+            <p>At Paxal, we specialize in implementing robust Linux-based firewall solutions that provide enterprise-grade security without the enterprise-grade costs. Our carefully crafted firewall configurations offer unparalleled protection for your business infrastructure while maintaining the flexibility and control you need.</p>
         </div>
-    </section>
-	
 
-    <!-- Expertise Section -->
-    <section id="expertise" class="expertise">
-        <h2 class="section-title">Our Expertise</h2>
-        <div class="expertise-grid">
-            <div class="nav-links">
-				<div class="expertise-card">
-					<i class="fas fa-award service-icon"></i>
-					<a href="industry-experience.html"<h3>Industry Experience</h3> </a>
-					<p>Over a decade of experience serving enterprises across various sectors.</p>
-				</div>
-			</div>
-            <div class="nav-links">
-				<div class="expertise-card">
-					<i class="fas fa-users service-icon"></i>
-					<a href="certifications.html"<h3>Certifications</h3></a>
-					<p>Team of certified professionals with expertise in leading technologies.</p>
-				</div>
-			</div>
-			<div class="nav-links">
-				<div class="expertise-card">
-					<i class="fas fa-users service-icon"></i>
-					<a href="client-success.html"<h3>Client Success</h3></a>
-					<p>Proven track record of successful enterprise implementations.</p>
-				</div>
-			</div>
+        <div class="article-section">
+            <h2>Key Benefits</h2>
+            <ul>
+                <li>Complete customization control over security policies</li>
+                <li>Real-time threat detection and prevention</li>
+                <li>Detailed logging and monitoring capabilities</li>
+                <li>Cost-effective compared to proprietary solutions</li>
+                <li>Regular security updates and patches</li>
+                <li>Scalable performance for growing businesses</li>
+            </ul>
         </div>
-    </section>
+
+        <div class="article-section">
+            <h2>Our Implementation Approach</h2>
+            <ul>
+                <li>Detailed initial security assessment</li>
+                <li>Custom rule configuration based on your business needs</li>
+                <li>Integration with existing security systems</li>
+                <li>Comprehensive documentation and training</li>
+                <li>24/7 monitoring and maintenance support</li>
+            </ul>
+        </div>
+
+        <div class="article-section faq-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <p class="faq-question">What makes Linux-based firewalls different from commercial alternatives?</p>
+                <p>Linux-based firewalls offer greater customization, transparency, and cost-effectiveness. With access to the source code and a vast community of security experts, these solutions can be tailored precisely to your needs while maintaining enterprise-grade security standards.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">How often should firewall rules be updated?</p>
+                <p>We recommend monthly reviews of firewall rules with immediate updates for critical security patches. Our team provides continuous monitoring and implements updates as needed to maintain optimal security.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">Can Linux firewalls protect against modern cyber threats?</p>
+                <p>Absolutely. Our Linux firewall implementations include advanced features like deep packet inspection, intrusion detection, and prevention systems that protect against the latest cyber threats, including zero-day exploits and sophisticated attacks.</p>
+            </div>
+
+            <div class="faq-item">
+                <p class="faq-question">What level of support do you provide after implementation?</p>
+                <p>We offer comprehensive support packages including 24/7 monitoring, regular maintenance, emergency response, and quarterly security audits. Our team is always available to address any security concerns or needed modifications.</p>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
@@ -460,11 +388,10 @@
                 <a href="https://www.linkedin.com/in/paxalit/" target="_blank" rel="noopener noreferrer" class="cloudflare-linkedin">
 					<i class="fab fa-linkedin"></i> LinkedIn
 				</a>
-
-                <a href="terms.html" class="terms-link">
+                <a href="../terms.html" class="terms-link">
 					<i class="fas fa-file-contract"></i> Terms
 				</a>
-				<a href="popia.html" class="privacy-link">
+				<a href="../popia.html" class="privacy-link">
 					<i class="fas fa-shield-alt"></i> Privacy
 				</a>
             </div>
@@ -473,9 +400,8 @@
     </footer>
 
     <script>
-        // Wait for DOM to be fully loaded
+        // Create animated background particles
         document.addEventListener('DOMContentLoaded', function() {
-            // Create animated background particles
             const background = document.getElementById('background');
             for (let i = 0; i < 50; i++) {
                 const span = document.createElement('span');

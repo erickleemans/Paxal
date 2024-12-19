@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400">
+    <!-- Background -->
+    <rect width="800" height="400" fill="#1A1A1A"/>
+    
+    <!-- Abstract geometric shapes -->
+    <path d="M0 200 L200 0 L400 200 L600 0 L800 200" 
+          fill="none" 
+          stroke="#FF6B4A" 
+          stroke-width="2" 
+          opacity="0.1"/>
+    
+    <path d="M0 300 L200 100 L400 300 L600 100 L800 300" 
+          fill="none" 
+          stroke="#FF6B4A" 
+          stroke-width="2" 
+          opacity="0.1"/>
+    
+    <!-- Gradient overlay for depth -->
+    <defs>
+        <linearGradient id="headerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#FF6B4A;stop-opacity:0.1"/>
+            <stop offset="100%" style="stop-color:#FFA07A;stop-opacity:0.1"/>
+        </linearGradient>
+    </defs>
+    <rect width="800" height="400" fill="url(#headerGradient)"/>
+    
+    <!-- Central content -->
+    <g transform="translate(400, 200)">
+        <!-- PAXAL text -->
+        <text x="0" y="-40" 
+              font-family="Inter, sans-serif" 
+              font-size="60" 
+              font-weight="bold" 
+              fill="#FF6B4A" 
+              text-anchor="middle">
+            PAXAL
+        </text>
+        
+        <!-- Coming Soon text -->
+        <text x="0" y="40" 
+              font-family="Inter, sans-serif" 
+              font-size="32" 
+              fill="#F8FAFC" 
+              text-anchor="middle">
+            COMING SOON
+        </text>
+    </g>
+    
+    <!-- Decorative dots -->
+    <g fill="#FF6B4A">
+        <circle cx="200" cy="100" r="3" opacity="0.3"/>
+        <circle cx="600" cy="100" r="3" opacity="0.3"/>
+        <circle cx="400" cy="300" r="3" opacity="0.3"/>
+        <circle cx="200" cy="300" r="3" opacity="0.3"/>
+        <circle cx="600" cy="300" r="3" opacity="0.3"/>
+    </g>
+    
+    <!-- Bottom line -->
+    <line x1="300" y1="350" x2="500" y2="350" 
+          stroke="#FF6B4A" 
+          stroke-width="2" 
+          opacity="0.3"/>
+</svg>

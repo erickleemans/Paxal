@@ -3,10 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paxal - Enterprise IT Solutions</title>
+    <title>Network Security - Paxal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
-        /* All previous styles remain exactly the same */
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
         * {
@@ -31,7 +30,7 @@
             overflow-x: hidden;
         }
 
-        /* Animated Background */
+        /* Background Animation */
         .background {
             position: fixed;
             top: 0;
@@ -39,30 +38,34 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-            opacity: 0.5;
+            opacity: 0.3;
+            background: linear-gradient(to bottom right, #1a1a1a, #2d2d2d);
         }
 
         .background span {
             position: absolute;
             display: block;
-            width: 20px;
-            height: 20px;
-            background: var(--primary-gradient);
-            animation: move 3s linear infinite;
+            pointer-events: none;
+            width: 6px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 15s linear infinite;
             border-radius: 50%;
-            opacity: 0.1;
         }
 
-        @keyframes move {
+        @keyframes float {
             0% {
-                transform: translateY(0) rotate(0deg);
+                transform: translateY(0) translateX(0) rotate(0deg);
                 opacity: 0;
             }
-            50% {
-                opacity: 0.2;
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
             }
             100% {
-                transform: translateY(-1000px) rotate(360deg);
+                transform: translateY(-1000px) translateX(100px) rotate(360deg);
                 opacity: 0;
             }
         }
@@ -157,32 +160,18 @@
             color: var(--primary);
         }
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
+        /* Service Hero Section */
+        .service-hero {
+            min-height: 60vh;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 2rem;
+            padding: 6rem 2rem 2rem;
             position: relative;
         }
 
-        .hero-content {
-            max-width: 800px;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeInUp 1s ease forwards;
-        }
-
-        @keyframes fadeInUp {
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero h1 {
+        .service-hero h1 {
             font-size: 3.5rem;
             margin-bottom: 1.5rem;
             line-height: 1.2;
@@ -191,16 +180,92 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .hero p {
+        .service-hero p {
             font-size: 1.25rem;
             color: var(--text-muted);
             margin-bottom: 2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Service Content */
+        .service-content {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary);
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+
+        .feature-card {
+            background: rgba(45, 45, 45, 0.5);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 107, 74, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 20px rgba(255, 107, 74, 0.1);
+        }
+
+        .service-icon {
+            font-size: 2rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+        }
+
+        /* Technology Stack */
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .tech-badge {
+            background: rgba(255, 107, 74, 0.1);
+            border: 1px solid var(--primary);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .tech-badge:hover {
+            background: var(--primary-gradient);
+            color: white;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: rgba(45, 45, 45, 0.3);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin: 4rem 0;
         }
 
         .cta-buttons {
             display: flex;
             gap: 1rem;
             justify-content: center;
+            margin-top: 2rem;
         }
 
         .button {
@@ -230,74 +295,6 @@
             background: var(--primary);
             color: white;
             transform: translateY(-2px);
-        }
-
-        /* Services Section */
-        .services {
-            padding: 6rem 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 4rem;
-            color: var(--primary);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: rgba(45, 45, 45, 0.5);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255, 107, 74, 0.1);
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--primary);
-            box-shadow: 0 10px 20px rgba(255, 107, 74, 0.1);
-        }
-
-        .service-icon {
-            font-size: 2rem;
-            background: var(--primary-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 1rem;
-        }
-
-        /* Expertise Section */
-        .expertise {
-            padding: 6rem 2rem;
-            background: rgba(45, 45, 45, 0.3);
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .expertise-card {
-            text-align: center;
-            padding: 2rem;
-            background: rgba(26, 26, 26, 0.5);
-            border-radius: 12px;
-            border: 1px solid rgba(255, 107, 74, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .expertise-card:hover {
-            border-color: var(--primary);
         }
 
         /* Footer */
@@ -335,7 +332,7 @@
                 display: none;
             }
 
-            .hero h1 {
+            .service-hero h1 {
                 font-size: 2.5rem;
             }
 
@@ -367,8 +364,8 @@
                 </div>
             </a>
             <div class="nav-links">
-                <a href="#services">Services</a>
-                <a href="#expertise">Expertise</a>
+                <a href="index.html#services">Services</a>
+                <a href="index.html#expertise">Expertise</a>
                 <a href="contact.html">Contact</a>
                 <a href="popia.html">POPIA Notice</a>
 				<a href="projects-page.html"> Our Projects </a>
@@ -376,88 +373,74 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Service Hero Section -->
+    <section class="service-hero">
         <div class="hero-content">
-            <h1>Secure. Reliable.<br>Professional.</h1>
-            <p>Enterprise IT solutions backed by over a decade of industry experience</p>
-            <div class="cta-buttons">
-                <a href="contact.html" class="button button-primary">Get Started</a>
-                <a href="#services" class="button button-secondary">Learn More</a>
-            </div>
+            <h1>Network Security</h1>
+            <p>Enterprise-grade security solutions to protect your digital assets</p>
         </div>
     </section>
 
-    <!-- Services Section -->
-	<section id="services" class="services">
-        <h2 class="section-title">Our Services</h2>
-        <div class="services-grid">
-				<div class="service-card">
-					<i class="fas fa-shield-alt service-icon"></i>
-						<div class="nav-links">
-							<a href="networksecurity.html" > <h3>Network Security</h3> </a>
-						</div>
-					<p>Enterprise-grade firewall solutions and comprehensive security implementations to protect your business.</p>
-				</div>
-			
-            <div class="service-card">
-                <i class="fas fa-network-wired service-icon"></i>
-					<div class="nav-links">
-						<a href="networkinfrastructure.html" > <h3>Network Infrastructure</h3> </a>
-					</div>
-				<p>Complete network design and implementation for optimal performance and reliability.</p>
+    <!-- Main Content -->
+    <div class="service-content">
+        <h2 class="section-title">What We Offer</h2>
+        <p>Comprehensive network security solutions tailored to your enterprise needs. Our team of certified security experts ensures your infrastructure remains protected against evolving threats.</p>
+
+        <!-- Feature Grid -->
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-shield-alt service-icon"></i>
+                <h3>Firewall Management</h3>
+                <p>Advanced firewall configuration and maintenance with 24/7 monitoring and threat detection.</p>
             </div>
-            <div class="service-card">
-                <i class="fas fa-server service-icon"></i>
-                <div class="nav-links">
-						<a href="sysadmin.html" > <h3>System Administration</h3> </a>
-					</div>
-                <p>Expert system administration and maintenance for seamless IT operations.</p>
+            <div class="feature-card">
+                <i class="fas fa-lock service-icon"></i>
+                <h3>Access Control</h3>
+                <p>Robust access management systems with multi-factor authentication and detailed audit logs.</p>
             </div>
-			<div class="service-card">
-                <i class="fas fa-server service-icon"></i>
-					<div class="nav-links">
-						<a href="websitehosting.html" > <h3>Website Hosting</h3> </a>
-					</div>
-                <p>Expert system administration and maintenance for seamless IT operations.</p>
+            <div class="feature-card">
+                <i class="fas fa-shield-virus service-icon"></i>
+                <h3>Threat Prevention</h3>
+                <p>Proactive threat detection and prevention using next-generation security tools.</p>
             </div>
         </div>
-    </section>
-	
 
-    <!-- Expertise Section -->
-    <section id="expertise" class="expertise">
-        <h2 class="section-title">Our Expertise</h2>
-        <div class="expertise-grid">
+        <!-- Technologies Section -->
+        <h2 class="section-title">Technologies We Use</h2>
+        <div class="tech-stack">
             <div class="nav-links">
-				<div class="expertise-card">
-					<i class="fas fa-award service-icon"></i>
-					<a href="industry-experience.html"<h3>Industry Experience</h3> </a>
-					<p>Over a decade of experience serving enterprises across various sectors.</p>
-				</div>
-			</div>
-            <div class="nav-links">
-				<div class="expertise-card">
-					<i class="fas fa-users service-icon"></i>
-					<a href="certifications.html"<h3>Certifications</h3></a>
-					<p>Team of certified professionals with expertise in leading technologies.</p>
-				</div>
+				<a href="" <span class="tech-badge">Fortinet</span> </a>
 			</div>
 			<div class="nav-links">
-				<div class="expertise-card">
-					<i class="fas fa-users service-icon"></i>
-					<a href="client-success.html"<h3>Client Success</h3></a>
-					<p>Proven track record of successful enterprise implementations.</p>
-				</div>
+				<a href=""<span class="tech-badge">Cisco ASA</span> </a>
+			</div>
+			<div class="nav-links">
+				<a href=""<span class="tech-badge">Palo Alto</span> </a>
+			</div>
+			<div class="nav-links">
+				<a href=""<span class="tech-badge">Check Point</span> </a>
+			</div>
+			<div class="nav-links">
+				<a href=""<span class="tech-badge">Sophos</span> </a>
 			</div>
         </div>
-    </section>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2>Ready to Secure Your Network?</h2>
+            <p>Let's discuss how we can help protect your enterprise infrastructure.</p>
+            <div class="cta-buttons">
+                <a href="contact.html" class="button button-primary">Get Started</a>
+                <a href="#" class="button button-secondary">Download Brochure</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <footer>
         <div class="footer-content">
             <div class="footer-links">
-                <a href="https://www.linkedin.com/in/paxalit/" target="_blank" rel="noopener noreferrer" class="cloudflare-linkedin">
+                 <a href="https://www.linkedin.com/in/paxalit/" target="_blank" rel="noopener noreferrer" class="cloudflare-linkedin">
 					<i class="fab fa-linkedin"></i> LinkedIn
 				</a>
 
@@ -473,28 +456,39 @@
     </footer>
 
     <script>
-        // Wait for DOM to be fully loaded
         document.addEventListener('DOMContentLoaded', function() {
-            // Create animated background particles
             const background = document.getElementById('background');
-            for (let i = 0; i < 50; i++) {
-                const span = document.createElement('span');
-                span.style.left = Math.random() * 100 + '%';
-                span.style.animationDelay = Math.random() * 5 + 's';
-                span.style.animationDuration = Math.random() * 3 + 3 + 's';
-                background.appendChild(span);
+            const particleCount = 100;
+            
+            // Create initial particles
+            for (let i = 0; i < particleCount; i++) {
+                createParticle();
             }
 
-            // Navbar scroll effect
-            window.addEventListener('scroll', () => {
-                const navbar = document.getElementById('navbar');
-                if (window.scrollY > 50) {
-                    navbar.classList.add('scrolled');
-                } else {
-                    navbar.classList.remove('scrolled');
+            // Create new particles periodically
+            setInterval(createParticle, 2000);
+
+            // Add mouse interaction
+            document.addEventListener('mousemove', function(e) {
+                if (Math.random() > 0.85) {
+                    const mouseParticle = document.createElement('span');
+                    mouseParticle.style.left = e.clientX + 'px';
+                    mouseParticle.style.top = e.clientY + 'px';
+                    mouseParticle.style.animation = 'float ' + (Math.random() * 5 + 10) + 's linear infinite';
+                    mouseParticle.style.opacity = '0.2';
+                    background.appendChild(mouseParticle);
+                    
+                    // Remove particle after animation
+                    setTimeout(() => mouseParticle.remove(), 15000);
                 }
             });
-        });
-    </script>
-</body>
-</html>
+
+            function createParticle() {
+                const particle = document.createElement('span');
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = '100%';
+                particle.style.animation = 'float ' + (Math.random() * 10 + 5) + 's linear infinite';
+                background.appendChild(particle);
+                
+                // Remove particle after animation
+                setTimeout(() => particle.remove(), 15000

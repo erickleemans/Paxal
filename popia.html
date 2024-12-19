@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms and Conditions - Paxal</title>
+    <title>Privacy Notice - Paxal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
@@ -29,6 +29,7 @@
             line-height: 1.6;
         }
 
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -74,29 +75,6 @@
             border-radius: 2px;
         }
 
-        .logo-text span {
-            display: inline-block;
-            opacity: 0;
-            animation: glow 0.5s ease forwards;
-        }
-
-        .logo-text span:nth-child(1) { animation-delay: 0.1s; }
-        .logo-text span:nth-child(2) { animation-delay: 0.2s; }
-        .logo-text span:nth-child(3) { animation-delay: 0.3s; }
-        .logo-text span:nth-child(4) { animation-delay: 0.4s; }
-        .logo-text span:nth-child(5) { animation-delay: 0.5s; }
-
-        @keyframes glow {
-            0% {
-                opacity: 0;
-                text-shadow: none;
-            }
-            100% {
-                opacity: 1;
-                text-shadow: 0 0 8px rgba(255, 107, 74, 0.5);
-            }
-        }
-
         .nav-links {
             display: flex;
             gap: 2rem;
@@ -113,13 +91,14 @@
             color: var(--primary);
         }
 
+        /* Main Content */
         .main-content {
             max-width: 1000px;
             margin: 100px auto 60px;
             padding: 2rem;
         }
 
-        .terms-header {
+        .privacy-header {
             display: flex;
             align-items: center;
             margin-bottom: 3rem;
@@ -127,7 +106,7 @@
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .terms-icon {
+        .privacy-icon {
             font-size: 2rem;
             margin-right: 1rem;
             background: var(--primary-gradient);
@@ -135,14 +114,14 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .terms-section {
+        .privacy-section {
             margin-bottom: 2.5rem;
             opacity: 0;
             transform: translateY(20px);
             transition: all 0.6s ease;
         }
 
-        .terms-section.visible {
+        .privacy-section.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -188,6 +167,14 @@
             border-radius: 50%;
         }
 
+        .contact-info {
+            background: rgba(255, 107, 74, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        /* Footer */
         footer {
             background: var(--secondary);
             padding: 2rem;
@@ -208,14 +195,40 @@
                 font-size: 2rem;
             }
         }
+		
+		.logo-text span {
+            display: inline-block;
+            opacity: 0;
+            animation: glow 0.5s ease forwards;
+        }
+
+        .logo-text span:nth-child(1) { animation-delay: 0.1s; }
+        .logo-text span:nth-child(2) { animation-delay: 0.2s; }
+        .logo-text span:nth-child(3) { animation-delay: 0.3s; }
+        .logo-text span:nth-child(4) { animation-delay: 0.4s; }
+        .logo-text span:nth-child(5) { animation-delay: 0.5s; }
+		
+		@keyframes glow {
+            0% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(255, 107, 74, 0.5);
+            }
+        }
+
+
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav>
         <div class="nav-container">
             <a href="index.html" class="logo">
                 <div class="logo-icon"></div>
-                <div class="logo-text">
+                		<div class="logo-text">
                     <span>P</span>
                     <span>A</span>
                     <span>X</span>
@@ -229,74 +242,72 @@
                 <a href="contact.html">Contact</a>
                 <a href="popia.html">POPIA Notice</a>
 				<a href="projects-page.html"> Our Projects </a>
-            </div>
+			</div>
         </div>
     </nav>
 
+    <!-- Main Content -->
     <div class="main-content">
-        <div class="terms-header">
-            <i class="fas fa-file-contract terms-icon"></i>
-            <h1>Terms and Conditions</h1>
+        <div class="privacy-header">
+            <i class="fas fa-shield-alt privacy-icon"></i>
+            <h1>Privacy Notice</h1>
         </div>
 
-        <div class="terms-section">
-            <h2>1. Agreement to Terms</h2>
-            <p>By accessing and using Paxal's services, you agree to be bound by these Terms and Conditions. If you disagree with any part of these terms, you may not access or use our services.</p>
+        <div class="privacy-section">
+            <h2>1. Introduction</h2>
+            <p>Paxal ("we", "us", "our") respects your privacy and is committed to protecting your personal information in accordance with the Protection of Personal Information Act (POPIA).</p>
         </div>
 
-        <div class="terms-section">
-            <h2>2. Service Description</h2>
-            <p>Paxal provides enterprise IT solutions, including but not limited to:</p>
+        <div class="privacy-section">
+            <h2>2. Information We Collect</h2>
+            <p>We collect and process the following information:</p>
             <ul>
-                <li>Network security implementations</li>
-                <li>Network infrastructure design and deployment</li>
-                <li>System administration services</li>
-                <li>Website hosting services</li>
+                <li>Contact information (name, email, phone number)</li>
+                <li>Company details</li>
+                <li>Service requirements and preferences</li>
             </ul>
         </div>
 
-        <div class="terms-section">
-            <h2>3. Service Level Agreements</h2>
-            <p>All service level agreements (SLAs) are subject to individual contract terms. Standard response times and service availability will be detailed in your specific service agreement.</p>
-        </div>
-
-        <div class="terms-section">
-            <h2>4. Payment Terms</h2>
-            <p>Unless otherwise agreed in writing:</p>
+        <div class="privacy-section">
+            <h2>3. How We Use Your Information</h2>
+            <p>We use your information to:</p>
             <ul>
-                <li>Invoices are payable within 30 days of issue</li>
-                <li>All prices are quoted exclusive of VAT</li>
-                <li>Regular service fees are billed monthly in advance</li>
-                <li>Project work may require an initial deposit</li>
+                <li>Provide our IT services and support</li>
+                <li>Communicate about our services</li>
+                <li>Improve our service delivery</li>
+                <li>Comply with legal obligations</li>
             </ul>
         </div>
 
-        <div class="terms-section">
-            <h2>5. Intellectual Property</h2>
-            <p>All intellectual property rights in relation to our services, including but not limited to software, documentation, and methodologies, remain the property of Paxal or our licensors.</p>
+        <div class="privacy-section">
+            <h2>4. Information Security</h2>
+            <p>We implement appropriate technical and organizational measures to protect your personal information against unauthorized access, loss, or damage.</p>
         </div>
 
-        <div class="terms-section">
-            <h2>6. Confidentiality</h2>
-            <p>We maintain strict confidentiality regarding all client information and data. Detailed confidentiality terms are outlined in individual service agreements.</p>
+        <div class="privacy-section">
+            <h2>5. Your Rights</h2>
+            <p>Under POPIA, you have the right to:</p>
+            <ul>
+                <li>Request access to your personal information</li>
+                <li>Request correction of your personal information</li>
+                <li>Request deletion of your personal information</li>
+                <li>Object to processing of your personal information</li>
+            </ul>
         </div>
 
-        <div class="terms-section">
-            <h2>7. Limitation of Liability</h2>
-            <p>Paxal's liability shall be limited to the extent permitted by applicable law and shall not exceed the total amount paid for the services in the 12 months preceding any claim.</p>
-        </div>
-
-        <div class="terms-section">
-            <h2>8. Termination</h2>
-            <p>Either party may terminate services with written notice as specified in the service agreement. Any outstanding fees will become immediately payable upon termination.</p>
-        </div>
-
-        <div class="terms-section">
-            <h2>9. Governing Law</h2>
-            <p>These terms shall be governed by and construed in accordance with the laws of South Africa, and any disputes shall be subject to the exclusive jurisdiction of the South African courts.</p>
+        <div class="privacy-section">
+            <h2>6. Contact Information</h2>
+            <p>For any privacy-related queries, please contact:</p>
+            <div class="contact-info">
+                <p>Email: paxal@gmail.com</p>
+                <p>Information Officers:</p>
+                <p>Marlene Opperman</p>
+                <p>Bianca Muller</p>
+            </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer>
         <div class="footer-content">
             <p>&copy; 2024 Paxal. All rights reserved.</p>
@@ -304,6 +315,7 @@
     </footer>
 
     <script>
+        // Scroll animations
         const observerOptions = {
             threshold: 0.1
         };
@@ -316,7 +328,7 @@
             });
         }, observerOptions);
 
-        document.querySelectorAll('.terms-section').forEach(el => {
+        document.querySelectorAll('.privacy-section').forEach(el => {
             observer.observe(el);
         });
     </script>
