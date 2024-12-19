@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Experience - Paxal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Import the same styles from index.html */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #FF6B4A;
+            --primary-gradient: linear-gradient(45deg, #FF6B4A, #FFA07A);
+            --secondary: #2D2D2D;
+            --text: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+
+        body {
+            background-color: #1A1A1A;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Reuse navigation and footer styles */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Experience Page Specific Styles */
+        .page-header {
+            margin-top: 100px;
+            padding: 4rem 2rem;
+            text-align: center;
+            background: rgba(45, 45, 45, 0.3);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .experience-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: var(--primary-gradient);
+        }
+
+        .timeline-item {
+            margin-bottom: 3rem;
+            position: relative;
+            width: 50%;
+            padding: 0 2rem;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            background: rgba(45, 45, 45, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 107, 74, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .expertise-areas {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .expertise-card {
+            background: rgba(45, 45, 45, 0.5);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 107, 74, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .expertise-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        footer {
+            background: var(--secondary);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 0;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+		    .logo-text span {
+            display: inline-block;
+            opacity: 0;
+            animation: glow 0.5s ease forwards;
+        }
+
+        .logo-text span:nth-child(1) { animation-delay: 0.1s; }
+        .logo-text span:nth-child(2) { animation-delay: 0.2s; }
+        .logo-text span:nth-child(3) { animation-delay: 0.3s; }
+        .logo-text span:nth-child(4) { animation-delay: 0.4s; }
+        .logo-text span:nth-child(5) { animation-delay: 0.5s; }
+		
+		@keyframes glow {
+            0% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(255, 107, 74, 0.5);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+                <div class="logo-text">
+                    <span>P</span>
+                    <span>A</span>
+                    <span>X</span>
+                    <span>A</span>
+                    <span>L</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#expertise">Expertise</a>
+                <a href="contact.html">Contact</a>
+                <a href="popia.html">POPIA Notice</a>
+                <a href="projects-page.html"> Our Projects </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Industry Experience</h1>
+        <p>Building on years of expertise to deliver exceptional IT solutions</p>
+    </header>
+
+    <!-- Experience Content -->
+    <div class="experience-content">
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Network Infrastructure Excellence</h3>
+                    <p>Our team brings extensive experience in network design and implementation, including successful deployments of large-scale wireless communication systems and enterprise-grade network infrastructure. From high-site installations to complex network troubleshooting, we've handled it all.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>System Administration & Cloud Solutions</h3>
+                    <p>With deep expertise in managing ProxMox, AWS, and various enterprise systems, we excel in providing comprehensive system administration services. Our experience spans across multiple operating systems including Debian (Ubuntu) and RedHat (CentOS), ensuring robust and reliable IT operations.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Security Implementation</h3>
+                    <p>Our team's growing expertise in cybersecurity, including various certifications like CompTIA Security+, enables us to provide cutting-edge security solutions. We're constantly expanding our knowledge with ongoing certifications in Zabbix, MikroTik, and Juniper technologies.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="expertise-areas">
+            <div class="expertise-card">
+                <h3>Technical Proficiency</h3>
+                <ul>
+                    <li>MikroTik Certified Network Associate (MTCNA)</li>
+                    <li>Zabbix 7 Certified</li>
+                    <li>CompTIA A+, Network+, Security+ certifications</li>
+                    <li>Pursuing MTCRE and Juniper certifications (JNCIA, JNCIS-SP)</li>
+                </ul>
+            </div>
+
+            <div class="expertise-card">
+                <h3>Project Highlights</h3>
+                <ul>
+                    <li>Complete network infrastructure implementation for multi-story corporate buildings</li>
+                    <li>Large-scale wireless communication system deployments</li>
+                    <li>Enterprise-level system administration and monitoring</li>
+                    <li>Implementation of comprehensive security solutions</li>
+                </ul>
+            </div>
+
+            <div class="expertise-card">
+                <h3>Future Focus</h3>
+                <ul>
+                    <li>Expanding expertise in Python programming</li>
+                    <li>Advanced network security implementations</li>
+                    <li>Cloud infrastructure optimization</li>
+                    <li>Continuous professional development in emerging technologies</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/paxalit/" target="_blank" rel="noopener noreferrer" class="cloudflare-linkedin">
+					<i class="fab fa-linkedin"></i> LinkedIn
+				</a>
+
+                <a href="terms.html" class="terms-link">
+					<i class="fas fa-file-contract"></i> Terms
+				</a>
+				<a href="popia.html" class="privacy-link">
+					<i class="fas fa-shield-alt"></i> Privacy
+				</a>
+            </div>
+            <p>&copy; 2024 Paxal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paxal - Our Projects</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --primary: #FF6B4A;
+            --primary-gradient: linear-gradient(45deg, #FF6B4A, #FFA07A);
+            --secondary: #2D2D2D;
+            --text: #F8FAFC;
+            --text-muted: #94A3B8;
+        }
+
+        body {
+            background-color: #1A1A1A;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Navigation (reused from main site) */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem;
+            background: rgba(26, 26, 26, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+            background: var(--primary-gradient);
+            border-radius: 4px;
+            position: relative;
+        }
+
+        .logo-icon::before {
+            content: '';
+            position: absolute;
+            inset: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Projects Header */
+        .projects-header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(26, 26, 26, 0.9), rgba(26, 26, 26, 0.7));
+        }
+
+        .projects-header h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .projects-header p {
+            max-width: 800px;
+            margin: 0 auto;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: rgba(45, 45, 45, 0.5);
+            border-radius: 16px;
+            overflow: hidden;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            border: 1px solid rgba(255, 107, 74, 0.1);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent, rgba(26, 26, 26, 0.8));
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background: rgba(255, 107, 74, 0.1);
+            color: var(--primary);
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            font-size: 0.875rem;
+        }
+
+        .project-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: gap 0.3s ease;
+        }
+
+        .project-link:hover {
+            gap: 0.75rem;
+        }
+
+        /* Footer (reused from main site) */
+        footer {
+            background: var(--secondary);
+            padding: 4rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+
+<style>
+    /* [Previous styles remain the same] */
+
+    /* Updated Project Image Styles */
+    .project-image {
+        width: 100%;
+        height: 250px;  /* Increased height for better preview */
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        filter: grayscale(60%);  /* Makes the image partially greyscale */
+        transition: filter 0.3s ease;
+    }
+
+    .project-card:hover .project-image {
+        filter: grayscale(20%);  /* Reduces greyscale effect on hover */
+    }
+
+    .project-overlay {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(26, 26, 26, 0.3),
+            rgba(26, 26, 26, 0.8)
+        );
+    }
+
+    /* Preview Badge */
+    .preview-badge {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(255, 107, 74, 0.9);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        font-size: 0.875rem;
+        font-weight: 500;
+        z-index: 1;
+    }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .projects-header h1 {
+                font-size: 2.5rem;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+		
+		.logo-text span {
+            display: inline-block;
+            opacity: 0;
+            animation: glow 0.5s ease forwards;
+        }
+
+        .logo-text span:nth-child(1) { animation-delay: 0.1s; }
+        .logo-text span:nth-child(2) { animation-delay: 0.2s; }
+        .logo-text span:nth-child(3) { animation-delay: 0.3s; }
+        .logo-text span:nth-child(4) { animation-delay: 0.4s; }
+        .logo-text span:nth-child(5) { animation-delay: 0.5s; }
+		
+		@keyframes glow {
+            0% {
+                opacity: 0;
+                text-shadow: none;
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 8px rgba(255, 107, 74, 0.5);
+            }
+        }
+
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"></div>
+             		<div class="logo-text">
+                    <span>P</span>
+                    <span>A</span>
+                    <span>X</span>
+                    <span>A</span>
+                    <span>L</span>
+                </div>
+            </a>
+            <div class="nav-links">
+                <a href="index.html#services">Services</a>
+                <a href="index.html#expertise">Expertise</a>
+                <a href="contact.html">Contact</a>
+				<a href="contact.html">POPIA Notice</a>
+                <a href="projects-page.html"> Our Projects </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Projects Header -->
+    <header class="projects-header">
+        <h1>Innovation in Action</h1>
+        <p>Discover our cutting-edge projects where technology meets real-world solutions. From AI-powered agriculture to enterprise IT solutions, we're building the future.</p>
+    </header>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid">
+        <!-- AI Cattle Monitoring Project -->
+        <div class="project-card">
+        <div class="project-image" style="background-image: url('ai/Cattle.jpg')">
+            <span class="preview-badge">Preview</span>
+            <div class="project-overlay"></div>
+        </div>
+        <div class="project-content">
+            <h3 class="project-title">AI-Powered Cattle Monitoring</h3>
+            <div class="project-tags">
+                <span class="tag">Artificial Intelligence</span>
+                <span class="tag">Agriculture</span>
+                <span class="tag">IoT</span>
+            </div>
+            <p class="project-description">
+                Revolutionary AI solution for real-time cattle health monitoring and behavior analysis. Helping farmers optimize their operations through intelligent technology.
+            </p>
+            <a href="ai/index.html" class="project-link">
+                Learn More <i class="fas fa-arrow-right"></i>
+            </a>
+        </div>
+    </div>
+
+        <!-- Placeholder for future projects -->
+        <div class="project-card">
+            <div class="project-image" style="background-image: url('coming-soon.svg')">
+				<span class="preview-badge">Preview</span>
+                <div class="project-overlay"></div>
+            </div>
+            <div class="project-content">
+                <h3 class="project-title">Enterprise Security Solutions</h3>
+                <div class="project-tags">
+                    <span class="tag">Cybersecurity</span>
+                    <span class="tag">Enterprise</span>
+                    <span class="tag">Network</span>
+                </div>
+                <p class="project-description">
+                    Comprehensive security implementations protecting businesses through advanced threat detection and prevention systems.
+                </p>
+                <a href="#" class="project-link">
+                    Coming Soon <i class="fas fa-arrow-right"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Add more project cards as needed -->
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="https://www.linkedin.com/in/paxalit/" target="_blank" rel="noopener noreferrer" class="cloudflare-linkedin">
+					<i class="fab fa-linkedin"></i> LinkedIn
+				</a>
+
+                <a href="terms.html" class="terms-link">
+					<i class="fas fa-file-contract"></i> Terms
+				</a>
+				<a href="popia.html" class="privacy-link">
+					<i class="fas fa-shield-alt"></i> Privacy
+				</a>
+            </div>
+            <p>&copy; 2024 Paxal. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
